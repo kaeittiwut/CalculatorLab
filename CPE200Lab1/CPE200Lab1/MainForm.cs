@@ -10,14 +10,16 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
-    public partial class MainForm : Form
+    public partial class textBox_result : Form
     {
         private bool hasDot;
         private bool isAllowBack;
         private bool isAfterOperater;
         private bool isAfterEqual;
         private string firstOperand;
+        //private string secondOperand;
         private string operate;
+        Double resultValue = 0;
 
         CalculatorEngine CalcEngine = new CalculatorEngine();
         
@@ -72,7 +74,7 @@ namespace CPE200Lab1
         */
         
 
-        public MainForm()
+        public textBox_result()
         {
             InitializeComponent();
 
@@ -117,7 +119,17 @@ namespace CPE200Lab1
             {
                 return;
             }
-            operate = ((Button)sender).Text;
+            if (resultValue != 0)
+            {
+                btnEqual.PerformClick();
+                operate = ((Button)sender).Text;
+            }
+            else
+            {
+                operate = ((Button)sender).Text;
+                resultValue = double.Parse(lblDisplay.Text);
+            }
+            
             switch (operate)
             {
                 case "+":
@@ -129,10 +141,19 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     firstOperand = lblDisplay.Text;
+                    isAfterOperater = false;
+                    break;
+                // your code here
+                case "s":
+                    firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
                     break;
-                    // your code here
+
+                case "over":
+                    firstOperand = lblDisplay.Text;
+                    break;
             }
+
             isAllowBack = false;
         }
 
@@ -155,6 +176,7 @@ namespace CPE200Lab1
                 lblDisplay.Text = result;
             }
             isAfterEqual = true;
+            //resultValue = double.Parse(lblDisplay.Text);
         }
 
         private void btnDot_Click(object sender, EventArgs e)
@@ -205,6 +227,7 @@ namespace CPE200Lab1
         private void btnClear_Click(object sender, EventArgs e)
         {
             resetAll();
+            resultValue = 0;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -236,5 +259,30 @@ namespace CPE200Lab1
                 }
             }
         }
+
+        /*
+         private void btnPercent_Click(object sender, EventArgs e)
+        {
+            firstOperand = lblDisplay.Text;
+            //secondOperand = lblDisplay.Text;
+            //isAfterOperater = true;
+            double percentage;
+
+            if (resultValue != 0)
+            {
+                operate = ((Button)sender).Text;
+                resultValue = double.Parse(lblDisplay.Text);
+            }
+            if (firstOperand != "0")
+            {
+                percentage = (Convert.ToDouble(firstOperand) / 100);
+            }
+            if(secondOperand != "0")
+            {
+                percentage = (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand) / 100);
+            }
+        }
+        */
+        
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace CPE200Lab1
+﻿using System;
+
+namespace CPE200Lab1
 {
     partial class MainForm
     {
@@ -393,6 +395,26 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void btnMM_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void btnMP_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void btnMR_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void btnMC_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

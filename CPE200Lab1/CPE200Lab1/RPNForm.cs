@@ -10,15 +10,14 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
-    public partial class ExtendForm : Form
+    public partial class RPNForm : Form
     {
         private bool isNumberPart = false;
         private bool isContainDot = false;
         private RPNCalculatorEngine engine;
-        public ExtendForm()
+        public RPNForm()
         {
             InitializeComponent();
-            engine = new RPNCalculatorEngine();
         }
 
         private string getLastInString(string str)
@@ -68,7 +67,8 @@ namespace CPE200Lab1
             if (getLastInString(current) is " ")
             {
                 lblDisplay.Text = current.Substring(0, current.Length - 3);
-            } else
+            }
+            else
             {
                 lblDisplay.Text = current.Substring(0, current.Length - 1);
             }
@@ -92,7 +92,8 @@ namespace CPE200Lab1
             if (result is "E")
             {
                 lblDisplay.Text = "Error";
-            } else
+            }
+            else
             {
                 lblDisplay.Text = result;
             }
@@ -112,14 +113,16 @@ namespace CPE200Lab1
             if (current is "0")
             {
                 lblDisplay.Text = "-";
-            } else if (getLastInString(current) is "-")
+            }
+            else if (getLastInString(current) is "-")
             {
                 lblDisplay.Text = current.Substring(0, current.Length - 1);
                 if (lblDisplay.Text is "")
                 {
                     lblDisplay.Text = "0";
                 }
-            } else
+            }
+            else
             {
                 lblDisplay.Text = current + "-";
             }
@@ -127,11 +130,12 @@ namespace CPE200Lab1
 
         private void btnDot_Click(object sender, EventArgs e)
         {
-            if(!isContainDot)
+            if (!isContainDot)
             {
                 isContainDot = true;
                 lblDisplay.Text += ".";
             }
         }
+
     }
 }

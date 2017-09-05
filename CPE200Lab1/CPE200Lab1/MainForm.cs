@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace CPE200Lab1
 {
-    public partial class textBox_result : Form
+    public partial class MainForm : Form
     {
         private bool hasDot;
         private bool isAllowBack;
@@ -19,9 +19,10 @@ namespace CPE200Lab1
         private string firstOperand;
         //private string secondOperand;
         private string operate;
+        double memory;
+        CalculatorEngine engine;
+        private double resultValue;
 
-        CalculatorEngine CalcEngine = new CalculatorEngine();
-        
         private void resetAll()
         {
             lblDisplay.Text = "0";
@@ -271,7 +272,6 @@ namespace CPE200Lab1
                 }
             }
         }
-        */
         
     }
 }

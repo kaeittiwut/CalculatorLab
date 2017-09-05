@@ -28,7 +28,7 @@ namespace CPE200Lab1
             lblDisplay.Text = "0";
             isAllowBack = true;
             hasDot = false;
-            isAfterOperater = false;
+            isAfterOperater = false; 
             isAfterEqual = false;
             firstOperand = null;
         }

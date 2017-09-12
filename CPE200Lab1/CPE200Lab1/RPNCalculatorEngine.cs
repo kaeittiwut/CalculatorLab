@@ -24,13 +24,14 @@ namespace CPE200Lab1
                 {
                     rpnStack.Push(input);
                 }
-                else if (isOperator(input))
+                else if (isOperator(input) || input == "%")
                 {
                     string rpnOperate = input;
                     string secondRPNOperand = rpnStack.Pop().ToString();
                     string firstRPNOperand = rpnStack.Pop().ToString();
+                    rpnStack.Push(firstRPNOperand.ToString());
                     result = calculate(rpnOperate, firstRPNOperand, secondRPNOperand);
-                    //rpnStack.Push(result);
+                    rpnStack.Push(result);
                 }
                 else if(input == "√" || input == "1/x")
                 {
@@ -38,6 +39,16 @@ namespace CPE200Lab1
                     string firstRPNOperand = rpnStack.Pop().ToString();
                     result = unaryCalculate(rpnOperate, firstRPNOperand);
                 }
+                else
+                {
+                    if(input != "")
+                    {
+                        rpnStack.Push(input);
+
+                    }
+                    
+                }
+                /*
                 else if(input == "%")
                 {
                     string rpnOperate = input;
@@ -45,7 +56,7 @@ namespace CPE200Lab1
                     string firstRPNOperand = rpnStack.Pop().ToString();
                     result = calculate(rpnOperate, firstRPNOperand, secondRPNOperand);
                 }
-                
+                */
             }
             return result;
         }

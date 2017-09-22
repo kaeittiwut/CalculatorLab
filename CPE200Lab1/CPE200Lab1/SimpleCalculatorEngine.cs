@@ -6,16 +6,21 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    class SimpleCalculatorEngine : CalculatorEngine
     {
-        protected Stack<string> myStack;
+        double firstOperand;
+        double secondOperand;
 
+        public void setFirstOperand (string num)
+        {
+            firstOperand = Convert.ToDouble(num);
+        }
+        public void setSecondOperand(string num)
+        {
+            secondOperand = Convert.ToDouble(num);
+        }
         public string calculate(string oper)
         {
-            string secondOperand = myStack.Pop();
-            string firstOperand = myStack.Pop();
-            
-
             int maxOutputSize = 8;
             switch (oper)
             {
@@ -27,7 +32,7 @@ namespace CPE200Lab1
                     return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
                 case "÷":
                     // Not allow devide be zero
-                    if (secondOperand != "0")
+                    if (secondOperand != 0)
                     {
                         double result;
                         string[] parts;
@@ -73,7 +78,7 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     //your code here
-                    if (secondOperand != "0")
+                    if (secondOperand != 0)
                     {
                         double result;
                         string[] parts;
@@ -95,90 +100,6 @@ namespace CPE200Lab1
                     break;
             }
             return "E";
-        }
-        public new string Process(string str)
-        {
-            if (str == null || str == "")
-            {
-                return "E";
-            }
-
-            if (str == "0")
-            {
-                return "0";
-            }
-
-
-
-
-            myStack = new Stack<string>();
-            //Stack<string> rpnStack = new Stack<string>();
-            List<string> parts = str.Split(' ').ToList<string>();
-            if (parts.Count < 3)
-            {
-                return "E";
-            }
-
-            string result;
-            string firstOperand, secondOperand;
-
-            foreach (string token in parts)
-            {
-                //if (token == "√" || token == "1/x")
-                //{
-
-                //    firstOperand = myStack.Pop().ToString();
-                //    result = calculate(token);
-                //    myStack.Push(result);
-                //}
-                //else if (token == "%")
-                //{
-                //    secondOperand = myStack.Pop().ToString();
-                //    if (myStack.Count == 0)
-                //        return "E";
-                //    firstOperand = myStack.Pop().ToString();
-                //    myStack.Push(firstOperand.ToString());
-                //    result = calculate(token);
-                //    myStack.Push(result);
-
-                //}
-                //else 
-                if (isNumber(token))
-                {
-                    myStack.Push(token);
-                }
-                else if (isOperator(token))
-                {
-                    //FIXME, what if there is only one left in stack?
-                    if (myStack.Count == 0 || myStack.Count == 1)
-                    {
-                        return "E";
-                    }
-                        
-                    //secondOperand= myStack.Pop();
-                    //firstOperand = myStack.Pop();
-                    result = calculate(token);
-                    if (result is "E")
-                    {
-                        return result;
-                    }
-                    myStack.Push(result);
-                    
-                }
-                
-            }
-           
-
-            //FIXME, what if there is more than one, or zero, items in the stack?
-            if (myStack.Count != 0)
-            {
-                result = myStack.Pop();
-            }
-            else
-            {
-                result = "E";
-            }
-            return result;
         }
     }
 }
